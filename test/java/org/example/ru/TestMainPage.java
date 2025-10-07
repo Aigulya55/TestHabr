@@ -7,10 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
 import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestMainPage {
@@ -18,10 +15,7 @@ public class TestMainPage {
 
     @BeforeEach
     public void setUP() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        //fix the issue https://github.com/SeleniumHQ/selenium/issues/11750
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get("https://www.habr.com/");
@@ -48,6 +42,5 @@ public class TestMainPage {
         searchButton.click();
 
         assertEquals(input, searchField.getAttribute("value"), "Неверное значение");
-
     }
 }
